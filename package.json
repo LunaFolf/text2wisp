@@ -1,0 +1,19 @@
+{
+  "name": "text2wispchar",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "serve": "webpack serve --mode=development",
+    "build": "webpack --mode=production",
+    "build-dev": "webpack --mode=development"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.3.1",
+    "webpack": "^5.33.2",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}

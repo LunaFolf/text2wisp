@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text 2 Wisp Chars</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&family=Roboto&display=swap"
+    rel="stylesheet">
+</head>
+<body>
+  <div class="textBody">
+    <h1>Text to Wisp Characters!</h1>
+    <p>The magical tool that no-one asked for!</p>
+    <hr>
+    <p>Enter your text below</p>
+    <input id="textInput" type="text" name="originalText">
+    <p>And here is your output, to the closest match for wisp characters</p>
+    <div class="counter">
+      <p>
+        <em>
+          <span id="charsLeft"></span>/<span id="charsLimit"></span>
+        </em>
+      </p>
+    </div>
+    <div class="output" id="output"></div>
+    <p>Here is the raw output, to show you what text we were able to convert</p>
+    <div class="output" id="rawOutput"></div>
+  </div>
+</body>
+<style>
+  html {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+  }
+
+  body {
+    background-color: #1e1e1f;
+    color: #fafafa;
+    overflow-x: hidden;
+    padding-top: 25px;
+  }
+
+  .textBody {
+    position: absolute;
+    width: 75vw;
+    left: 12.5vw;
+    text-align: justify;
+    transition: width .25s;
+    padding-bottom: 50px;
+  }
+
+  .nonEssential {
+    color: orange;
+  }
+
+  .counter {
+    text-align: right;
+  }
+
+  input, .output {
+    width: calc(100% - 32px);
+    color: #fafafa;
+    background-color: transparent;
+    border: 2px solid #fafafa22;
+    padding: 16px;
+    filter: drop-shadow(4px 4px 2px black);
+    border-radius: 8px;
+    overflow-wrap: break-word;
+  }
+
+  hr {
+    padding: 0;
+    margin: 0;
+  }
+
+  hr,
+  em {
+    opacity: 0.75;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  @media only screen and (max-width: 400px) {
+    .textBody {
+      width: 90vw;
+      left: 5vw;
+    }
+  }
+
+  @media only screen and (min-width: 1000px) {
+    .textBody {
+      width: 750px;
+      left: calc(50vw - 375px);
+    }
+  }
+</style>
+</html>

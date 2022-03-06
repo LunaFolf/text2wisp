@@ -1,15 +1,12 @@
 const textInput = document.getElementById('textInput');
-const textOutput = document.getElementById('output');
+const textWispOutput = document.getElementById('output-wisp');
+const textRegionalOutput = document.getElementById('output-regional');
 const textRawOutput = document.getElementById('rawOutput');
-const charCountEl = document.getElementById('charsLeft');
-const charLimitEl = document.getElementById('charsLimit');
 
 const charsWeDontHave = ["D", "G", "K", "Q", "X", "Z"];
 
-const charLimit = 2000;
-let currentCharCount = 0;
 
-function convertChar(char) {
+function convertCharToWisp (char) {
   let raw = String(char).toLowerCase();
   let convert = `:wisp_${String(char).toLowerCase()}:`
   if (charsWeDontHave.includes(char)) {
@@ -21,31 +18,33 @@ function convertChar(char) {
   return { raw, convert }
 }
 
+function convertCharToRegional (char) {
+  let raw = String(char).toLowerCase();
+  let convert = `:regional_indicator_${String(char).toLowerCase()}: `
+  if (char === " ") convert = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+  return { raw, convert }
+}
+
 function updateText ({ target }) {
   let value = String(target.value).toUpperCase();
   value = value.replace(/[.,:!?"']/gm, "");
   const splitText = Array.from(value);
   
   let rawText = "";
-  let convertedText = "";
+  let wispText = "";
+  let regionalText = "";
   splitText.forEach(char => {
-    const converted = convertChar(char);
-    rawText = rawText + converted.raw;
-    convertedText = convertedText + converted.convert
-    console.log(char, converted.raw, converted.convert)
+    const convWisp = convertCharToWisp(char);
+    const convRegional = convertCharToRegional(char);
+    rawText = rawText + convWisp.raw;
+    wispText = wispText + convWisp.convert;
+    regionalText = regionalText + convRegional.convert;
   })
 
-  currentCharCount = convertedText.length;
 
   textRawOutput.innerHTML = rawText;
-  textOutput.innerHTML = convertedText;
-  updateCharCounter();
-}
-
-function updateCharCounter () {
-  charCountEl.innerHTML = charLimit - currentCharCount;
-  charLimitEl.innerHTML = charLimit;
+  textWispOutput.innerHTML = wispText;
+  textRegionalOutput.innerHTML = regionalText;
 }
 
 textInput.addEventListener("input", updateText);
-updateCharCounter();
